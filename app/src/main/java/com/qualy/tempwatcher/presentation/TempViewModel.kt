@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.qualy.tempwatcher.TempWatcherApplication
 import com.qualy.tempwatcher.data.PCStatsApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,15 +21,21 @@ class TempViewModel(application: Application) : AndroidViewModel(application) {
     private val _stats = MutableStateFlow<TempUiState>(
         TempUiState.Connecting
     )
-
     val stats = _stats.asStateFlow()
 
+    private var pollingJob: Job? = null
+
     init {
-        startUpdating()
+        startPolling()
     }
 
-    private fun startUpdating() {
-        viewModelScope.launch {
+    fun retry() {
+        startPolling()
+    }
+
+    private fun startPolling() {
+        pollingJob?.cancel()
+        pollingJob = viewModelScope.launch {
             while (isActive) {
                 try {
                     val ip = settingsRepository.ipFlow.first()
@@ -36,18 +43,22 @@ class TempViewModel(application: Application) : AndroidViewModel(application) {
 
                     val result = api.getStats(ip, port)
 
-                    println("Received: CPU=${result.cpuTemperature}, GPU=${result.gpuTemperature}")
-
                     _stats.value = TempUiState.Success(result)
 
                 } catch (e: Exception) {
                     _stats.value = TempUiState.Error(
                         e.message ?: "Unknown error"
                     )
+                    return@launch // stop looping, wait for manual retry()
                 }
 
                 delay(1000)
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        pollingJob?.cancel()
     }
 }
