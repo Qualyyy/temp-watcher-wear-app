@@ -26,16 +26,16 @@ fun TempScreen(
     viewModel: TempViewModel = viewModel()
 ) {
 
-    val stats by viewModel.stats.collectAsState()
+    val state by viewModel.stats.collectAsState()
 
     TempScreenContent(
-        stats = stats
+        state = state
     )
 }
 
 @Composable
 fun TempScreenContent(
-    stats: PCStats?
+    state: TempUiState
 ){
     Box(
         modifier = Modifier
@@ -44,22 +44,34 @@ fun TempScreenContent(
         contentAlignment = Alignment.Center
     ) {
 
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            TemperatureDisplay(
-                "CPU",
-                stats?.cpuTemperature
-            )
+        when (state) {
+            is TempUiState.Connecting -> {
+                Text("Connecting...")
+            }
 
-            Spacer(
-                modifier = Modifier.height(16.dp)
-            )
+            is TempUiState.Success -> {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    TemperatureDisplay(
+                        "CPU",
+                        state.stats.cpuTemperature
+                    )
 
-            TemperatureDisplay(
-                "GPU",
-                stats?.gpuTemperature
-            )
+                    Spacer(
+                        modifier = Modifier.height(16.dp)
+                    )
+
+                    TemperatureDisplay(
+                        "GPU",
+                        state.stats.gpuTemperature
+                    )
+                }
+            }
+
+            is TempUiState.Error -> {
+                Text("Disconnected")
+            }
         }
     }
 }
@@ -69,9 +81,11 @@ fun TempScreenContent(
 @Composable
 fun TempScreenPreview() {
     TempScreenContent(
-        stats = PCStats(
-            cpuTemperature = 57f,
-            gpuTemperature = 47f
+        state = TempUiState.Success(
+            PCStats(
+                cpuTemperature = 57f,
+                gpuTemperature = 47f
+            )
         )
     )
 }

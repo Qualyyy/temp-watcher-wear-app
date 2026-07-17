@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material3.MaterialTheme
 
@@ -33,7 +34,9 @@ fun TemperatureDisplay(
             } else {
                 "${temperature.toInt()}°C"
             },
-            style = MaterialTheme.typography.displayLarge
+            style = MaterialTheme.typography.displayLarge.copy(
+                fontFamily = FontFamily.Monospace
+            )
         )
     }
 }
