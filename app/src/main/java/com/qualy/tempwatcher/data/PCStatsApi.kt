@@ -1,21 +1,27 @@
-package com.qualy.tempwatcher.presentation
+package com.qualy.tempwatcher.data
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
-import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
 
 class PCStatsApi {
 
-    private val client = HttpClient(OkHttp) {
+    private val client = HttpClient {
         install(ContentNegotiation) {
-            json()
+            json(
+                Json {
+                    ignoreUnknownKeys = true
+                }
+            )
         }
     }
 
+    private val url = "http://192.168.0.246:5208/stats"
+
     suspend fun getStats(): PCStats {
-        return client.get("http://192.168.0.246:5208/stats").body()
+        return client.get(url).body()
     }
 }

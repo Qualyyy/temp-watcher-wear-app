@@ -1,4 +1,4 @@
-package com.qualy.tempwatcher.presentation
+package com.qualy.tempwatcher.data
 
 import kotlinx.serialization.Serializable
 
