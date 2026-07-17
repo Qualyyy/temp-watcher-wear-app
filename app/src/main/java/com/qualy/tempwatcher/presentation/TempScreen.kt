@@ -1,24 +1,20 @@
 package com.qualy.tempwatcher.presentation
 
 import androidx.compose.foundation.background
-import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.wear.compose.material3.*
+import androidx.wear.compose.material3.MaterialTheme
+import androidx.wear.compose.material3.Text
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import androidx.wear.compose.ui.tooling.preview.WearPreviewFontScales
 import com.qualy.tempwatcher.data.PCStats
-import com.qualy.tempwatcher.presentation.components.TemperatureDisplay
+import com.qualy.tempwatcher.presentation.components.TemperatureDashboard
 
 
 @Composable
@@ -40,7 +36,7 @@ fun TempScreenContent(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black),
+            .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ) {
 
@@ -50,23 +46,7 @@ fun TempScreenContent(
             }
 
             is TempUiState.Success -> {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    TemperatureDisplay(
-                        "CPU",
-                        state.stats.cpuTemperature
-                    )
-
-                    Spacer(
-                        modifier = Modifier.height(16.dp)
-                    )
-
-                    TemperatureDisplay(
-                        "GPU",
-                        state.stats.gpuTemperature
-                    )
-                }
+                TemperatureDashboard(state.stats.cpuTemperature, state.stats.gpuTemperature)
             }
 
             is TempUiState.Error -> {
