@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material3.Button
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.Text
+import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import kotlin.text.ifEmpty
 
 @Composable
@@ -106,4 +107,15 @@ fun NumPadDialog(
             }
         }
     }
+}
+
+@WearPreviewDevices
+@Composable
+fun NumPadDialogPreview() {
+    NumPadDialog(
+        initialValue = "192.168.0.246",
+        allowDot = true,
+        onConfirm = {},
+        onDismiss = {}
+    )
 }
