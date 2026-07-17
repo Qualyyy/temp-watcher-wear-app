@@ -1,9 +1,10 @@
 package com.qualy.tempwatcher.presentation
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.qualy.tempwatcher.TempWatcherApplication
 import com.qualy.tempwatcher.data.PCStatsApi
-import com.qualy.tempwatcher.data.SettingsRepositoryProvider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,10 +12,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class TempViewModel : ViewModel() {
+class TempViewModel(application: Application) : AndroidViewModel(application) {
 
     private val api = PCStatsApi()
-    private val settingsRepository = SettingsRepositoryProvider.get()
+    private val settingsRepository = (application as TempWatcherApplication).settingsRepository
 
     private val _stats = MutableStateFlow<TempUiState>(
         TempUiState.Connecting
