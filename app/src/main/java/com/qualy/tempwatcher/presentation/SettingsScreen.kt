@@ -2,6 +2,7 @@ package com.qualy.tempwatcher.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,6 +15,7 @@ import androidx.wear.compose.material3.ListHeader
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.Text
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
+import com.qualy.tempwatcher.presentation.components.SettingsButton
 
 
 @WearPreviewDevices
@@ -39,39 +41,17 @@ fun SettingsScreen() {
             }
 
             item {
-
+                SettingsButton(
+                    title = "IP Address",
+                    value = "192.168.0.246"
+                )
             }
 
             item {
-                Button(
-                    onClick = {
-                        // Open IP input
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        """
-                        IP Address
-                        192.168.0.246
-                        """.trimIndent()
-                    )
-                }
-            }
-
-            item {
-                Button(
-                    onClick = {
-                        // Open port input later
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        """
-                    Port
-                    5208
-                    """.trimIndent()
-                    )
-                }
+                SettingsButton(
+                    title = "Port",
+                    value = "5208"
+                )
             }
         }
     }
