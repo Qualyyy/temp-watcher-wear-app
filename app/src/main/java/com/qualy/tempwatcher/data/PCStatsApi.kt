@@ -19,9 +19,8 @@ class PCStatsApi {
         }
     }
 
-    private val url = "http://192.168.0.246:5208/stats"
-
-    suspend fun getStats(): PCStats {
+    suspend fun getStats(ip: String, port: String): PCStats {
+        val url = "http://$ip:$port/stats"
         return client.get(url).body()
     }
 }

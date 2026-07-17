@@ -10,12 +10,11 @@ import androidx.wear.compose.material3.Text
 @Composable
 fun SettingsButton(
     title: String,
-    value: String
+    value: String,
+    onClick: () -> Unit
 ) {
     Button(
-        onClick = {
-            // Open IP input
-        },
+        onClick = onClick,
         modifier = Modifier.fillMaxWidth()
     ) {
         Column {

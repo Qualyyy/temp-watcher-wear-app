@@ -3,15 +3,18 @@ package com.qualy.tempwatcher.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.qualy.tempwatcher.data.PCStatsApi
+import com.qualy.tempwatcher.data.SettingsRepositoryProvider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class TempViewModel : ViewModel() {
 
     private val api = PCStatsApi()
+    private val settingsRepository = SettingsRepositoryProvider.get()
 
     private val _stats = MutableStateFlow<TempUiState>(
         TempUiState.Connecting
@@ -27,7 +30,10 @@ class TempViewModel : ViewModel() {
         viewModelScope.launch {
             while (isActive) {
                 try {
-                    val result = api.getStats()
+                    val ip = settingsRepository.ipFlow.first()
+                    val port = settingsRepository.portFlow.first()
+
+                    val result = api.getStats(ip, port)
 
                     println("Received: CPU=${result.cpuTemperature}, GPU=${result.gpuTemperature}")
 
