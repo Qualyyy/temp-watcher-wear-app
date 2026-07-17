@@ -39,15 +39,16 @@ fun TempScreenContent(
             .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ) {
-
         when (state) {
             is TempUiState.Connecting -> {
                 Text("Connecting...")
             }
 
             is TempUiState.Success -> {
-                TemperatureDashboard(state.stats.cpuTemperature, state.stats.gpuTemperature)
-            }
+                TemperatureDashboard(
+                    cpuTemperature = state.stats.cpuTemperature,
+                    gpuTemperature = state.stats.gpuTemperature
+                )            }
 
             is TempUiState.Error -> {
                 Text("Disconnected")

@@ -13,14 +13,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            TempScreen()
+            TempPager()
         }
     }
-}
-
-@WearPreviewDevices
-@WearPreviewFontScales
-@Composable
-fun DefaultPreview() {
-    TempScreen()
 }
