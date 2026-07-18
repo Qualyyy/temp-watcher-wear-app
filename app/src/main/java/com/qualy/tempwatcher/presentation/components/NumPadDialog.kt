@@ -88,7 +88,7 @@ fun NumPadDialog(
                                         .fillMaxHeight()
 
                                 ) {
-                                    Text(key)
+                                    CenteredText(key)
                                 }
                             }
                         }
@@ -102,8 +102,8 @@ fun NumPadDialog(
                     .padding(top = 4.dp)
                     .weight(.25f)
             ) {
-                Button(onClick = onDismiss) { Text("Cancel") }
-                Button(onClick = { onConfirm(value) }) { Text("OK") }
+                Button(onClick = onDismiss) { CenteredText("Cancel") }
+                Button(onClick = { onConfirm(value) }) { CenteredText("OK") }
             }
         }
     }

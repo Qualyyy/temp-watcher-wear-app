@@ -1,10 +1,11 @@
-package com.qualy.tempwatcher.presentation
+package com.qualy.tempwatcher.presentation.models
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.qualy.tempwatcher.TempWatcherApplication
 import com.qualy.tempwatcher.data.PCStatsApi
+import com.qualy.tempwatcher.presentation.TempUiState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive

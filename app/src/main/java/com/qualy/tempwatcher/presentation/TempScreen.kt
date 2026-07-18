@@ -20,7 +20,9 @@ import androidx.wear.compose.material3.Text
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import androidx.wear.compose.ui.tooling.preview.WearPreviewFontScales
 import com.qualy.tempwatcher.data.PCStats
+import com.qualy.tempwatcher.presentation.components.CenteredText
 import com.qualy.tempwatcher.presentation.components.TemperatureDashboard
+import com.qualy.tempwatcher.presentation.models.TempViewModel
 
 
 @Composable
@@ -66,7 +68,7 @@ fun TempScreenContent(
                     Text("Disconnected", style = MaterialTheme.typography.labelLarge)
                     Spacer(modifier = Modifier.height(8.dp))
                     Button(onClick = onRetry, modifier = Modifier.fillMaxWidth(.75f)) {
-                        Text("Retry")
+                        CenteredText("Retry")
                     }
                 }
             }

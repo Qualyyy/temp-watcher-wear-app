@@ -20,6 +20,7 @@ import androidx.wear.compose.material3.Text
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import com.qualy.tempwatcher.presentation.components.NumPadDialog
 import com.qualy.tempwatcher.presentation.components.SettingsButton
+import com.qualy.tempwatcher.presentation.models.SettingsViewModel
 
 @WearPreviewDevices
 @Composable

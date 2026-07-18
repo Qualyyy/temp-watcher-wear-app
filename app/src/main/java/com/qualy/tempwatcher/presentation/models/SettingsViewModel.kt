@@ -1,4 +1,4 @@
-package com.qualy.tempwatcher.presentation
+package com.qualy.tempwatcher.presentation.models
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
