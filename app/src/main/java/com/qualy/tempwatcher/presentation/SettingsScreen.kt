@@ -67,7 +67,14 @@ fun SettingsScreen(viewModel: SettingsViewModel = viewModel()) {
                 contentAlignment = Alignment.Center
             ) {
                 ScalingLazyColumn(state = listState) {
-                    item { ListHeader { Text("Settings") } }
+                    item {
+                        ListHeader {
+                            Text(
+                                text = "Settings",
+                                style = MaterialTheme.typography.titleLarge
+                            )
+                        }
+                    }
 
                     item {
                         SettingsButton(
