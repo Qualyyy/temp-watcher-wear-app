@@ -47,18 +47,19 @@ fun TempScreenContent(
     onRetry: () -> Unit = {},
     currentTime: String
 ) {
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TimeDisplay(currentTime)
+        TimeDisplay(
+            time = currentTime,
+            modifier = Modifier.align(Alignment.TopCenter)
+        )
 
         Box(
             modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth(),
+                .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             when (state) {

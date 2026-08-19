@@ -1,6 +1,7 @@
 package com.qualy.tempwatcher.presentation.components
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.wear.compose.material3.MaterialTheme
@@ -9,9 +10,11 @@ import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 
 @Composable
 fun TimeDisplay(
-    time: String
+    time: String,
+    modifier: Modifier = Modifier
 ) {
     Text(
+        modifier = modifier,
         text = time,
         color = Color.White,
         style = MaterialTheme.typography.titleLarge.copy(

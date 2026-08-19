@@ -18,7 +18,7 @@ fun TemperatureDashboard(
     Row(
         modifier = Modifier.fillMaxSize(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         TemperatureGauge(
             label = "CPU",
