@@ -16,8 +16,8 @@ fun TimeDisplay(
     Text(
         modifier = modifier,
         text = time,
-        color = Color.White,
-        style = MaterialTheme.typography.titleLarge.copy(
+        color = Color.LightGray,
+        style = MaterialTheme.typography.labelLarge.copy(
             fontFamily = FontFamily.Monospace
         )
     )
