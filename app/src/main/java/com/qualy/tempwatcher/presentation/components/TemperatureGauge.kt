@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,7 +25,10 @@ fun TemperatureGauge(
     indicatorColor: Color,
     modifier: Modifier = Modifier
 ) {
-    val progress = (temperature?.div(100f) ?: 0f).coerceIn(0f, 1f)
+    val progress by rememberUpdatedState(
+        (temperature?.div(100f) ?: 0f).coerceIn(0f, 1f)
+    )
+
     Box(
         modifier = modifier
             .aspectRatio(1f)
