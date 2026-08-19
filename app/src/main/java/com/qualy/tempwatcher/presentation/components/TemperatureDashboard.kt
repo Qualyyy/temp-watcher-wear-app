@@ -1,33 +1,31 @@
 package com.qualy.tempwatcher.presentation.components
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun TemperatureDashboard(
     cpuTemperature: Float?,
     gpuTemperature: Float?
 ) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+    Row(
+        modifier = Modifier.fillMaxWidth()
     ) {
-        TemperatureDisplay(
+        TemperatureGauge(
             "CPU",
-            cpuTemperature
+            cpuTemperature,
+            Color(0xFF3B82F6),
+            modifier = Modifier.weight(1f)
         )
 
-        Spacer(
-            modifier = Modifier.height(16.dp)
-        )
-
-        TemperatureDisplay(
+        TemperatureGauge(
             "GPU",
-            gpuTemperature
+            gpuTemperature,
+            Color(0xFFF59E0B),
+            modifier = Modifier.weight(1f)
         )
     }
 }
