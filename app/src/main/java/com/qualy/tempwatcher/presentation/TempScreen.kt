@@ -22,6 +22,7 @@ import androidx.wear.compose.ui.tooling.preview.WearPreviewFontScales
 import com.qualy.tempwatcher.data.PCStats
 import com.qualy.tempwatcher.presentation.components.CenteredText
 import com.qualy.tempwatcher.presentation.components.TemperatureDashboard
+import com.qualy.tempwatcher.presentation.components.TimeDisplay
 import com.qualy.tempwatcher.presentation.models.TempViewModel
 
 
@@ -31,44 +32,56 @@ fun TempScreen(
 ) {
 
     val state by viewModel.stats.collectAsState()
+    val currentTime = rememberCurrentTime()
 
     TempScreenContent(
         state = state,
-        onRetry = viewModel::retry
+        onRetry = viewModel::retry,
+        currentTime = currentTime
     )
 }
 
 @Composable
 fun TempScreenContent(
     state: TempUiState,
-    onRetry: () -> Unit = {}
+    onRetry: () -> Unit = {},
+    currentTime: String
 ) {
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
-        contentAlignment = Alignment.Center
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        when (state) {
-            is TempUiState.Connecting -> {
-                Text("Connecting...")
-            }
+        TimeDisplay(currentTime)
 
-            is TempUiState.Success -> {
-                TemperatureDashboard(
-                    cpuTemperature = state.stats.cpuTemperature,
-                    gpuTemperature = state.stats.gpuTemperature
-                )
-            }
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth(),
+            contentAlignment = Alignment.Center
+        ) {
+            when (state) {
+                is TempUiState.Connecting -> {
+                    Text("Connecting...")
+                }
 
-            is TempUiState.Error -> {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text("Disconnected", style = MaterialTheme.typography.labelLarge)
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Button(onClick = onRetry, modifier = Modifier.fillMaxWidth(.75f)) {
-                        CenteredText("Retry")
+                is TempUiState.Success -> {
+                    TemperatureDashboard(
+                        cpuTemperature = state.stats.cpuTemperature,
+                        gpuTemperature = state.stats.gpuTemperature
+                    )
+                }
+
+                is TempUiState.Error -> {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text("Disconnected", style = MaterialTheme.typography.labelLarge)
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Button(onClick = onRetry, modifier = Modifier.fillMaxWidth(.75f)) {
+                            CenteredText("Retry")
+                        }
                     }
                 }
             }
@@ -86,6 +99,7 @@ fun TempScreenPreview() {
                 cpuTemperature = 57f,
                 gpuTemperature = 47f
             )
-        )
+        ),
+        currentTime = "14:37"
     )
 }
