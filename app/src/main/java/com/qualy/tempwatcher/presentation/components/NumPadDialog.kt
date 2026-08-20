@@ -79,7 +79,7 @@ fun NumPadDialog(
                                     onClick = {
                                         value = when (key) {
                                             "⌫" -> value.dropLast(1)
-                                            "." -> if (value.contains(".")) value else value + key
+                                            "." -> if (value[value.length - 1] == '.') value else value + key
                                             else -> value + key
                                         }
                                     },

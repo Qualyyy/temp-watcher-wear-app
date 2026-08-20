@@ -36,6 +36,7 @@ class TempViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun startPolling() {
         pollingJob?.cancel()
+        _stats.value = TempUiState.Connecting
         pollingJob = viewModelScope.launch {
             while (isActive) {
                 try {

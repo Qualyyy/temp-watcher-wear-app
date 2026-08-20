@@ -52,7 +52,7 @@ fun TempScreenContent(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(8.dp, 16.dp)
+            .padding(4.dp, 16.dp)
     ) {
         TimeDisplay(
             time = currentTime,
