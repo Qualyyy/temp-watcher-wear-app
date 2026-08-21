@@ -18,7 +18,7 @@ class SettingsRepository(context: Context) {
         val PORT_KEY = stringPreferencesKey("port")
     }
 
-    val ipFlow: Flow<String> = appContext.dataStore.data.map { it[IP_KEY] ?: "192.168.0.246" }
+    val ipFlow: Flow<String> = appContext.dataStore.data.map { it[IP_KEY] ?: "192.168.0.1" }
     val portFlow: Flow<String> = appContext.dataStore.data.map { it[PORT_KEY] ?: "5208" }
 
     suspend fun saveIp(ip: String) {

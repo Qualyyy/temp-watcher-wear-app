@@ -13,7 +13,7 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
     private val settingsRepository = (application as TempWatcherApplication).settingsRepository
 
     val ip = settingsRepository.ipFlow.stateIn(
-        viewModelScope, SharingStarted.WhileSubscribed(5000), "192.168.0.246"
+        viewModelScope, SharingStarted.WhileSubscribed(5000), "192.168.0.1"
     )
     val port = settingsRepository.portFlow.stateIn(
         viewModelScope, SharingStarted.WhileSubscribed(5000), "5208"
