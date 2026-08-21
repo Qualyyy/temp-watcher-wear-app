@@ -4,7 +4,10 @@
 
 A Wear OS app for monitoring PC temperatures directly from a smartwatch.
 
-The app connects to a small local API running on the PC and displays CPU and GPU temperatures on the watch.
+The app connects to a small local API running on the PC and displays CPU and GPU temperatures on the
+watch.
+
+![temp-watcher-screen.png](screenshots/temp-watcher-screen.png)
 
 ## Features
 
@@ -51,7 +54,8 @@ After installing the app, scroll to **Settings** on the watch and enter:
 
 The PC and watch must be connected to the same local network.
 
-The Temp Watcher API displays the IP address and port it is running on when the Windows application starts.
+The Temp Watcher API displays the IP address and port it is running on when the Windows application
+starts.
 
 ## Planned Features
 
