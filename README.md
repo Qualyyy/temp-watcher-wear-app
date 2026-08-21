@@ -21,15 +21,42 @@ The app connects to a small local API running on the PC and displays CPU and GPU
 - A PC running the [Temp Watcher API](https://github.com/Qualyyy/temp-watcher)
 - Both devices connected to the same local network
 
-## Tech Stack
+## Installation
 
-- Kotlin
-- Jetpack Compose for Wear OS
-- Android Jetpack
-- Ktor
-- Kotlin Coroutines
-- DataStore
+The Wear OS app is currently installed by building the project from source.
+
+### Requirements
+
+- [Android Studio](https://developer.android.com/studio)
+- A Wear OS watch running Android 11 (API 30) or newer
+
+### Steps
+
+1. Clone this repository.
+2. Open the project in Android Studio.
+3. Connect your Wear OS watch to Android Studio.
+4. Enable **Developer Options** and **ADB or Wireless debugging** on your watch.
+5. Select the Wear OS `app` configuration in Android Studio.
+6. Select your connected watch as the target device.
+7. Click **Run** in Android Studio.
+
+Android Studio will build and install the application directly on your watch.
+
+### Configuration
+
+After installing the app, scroll to **Settings** on the watch and enter:
+
+- **IP Address** — The local IP address of the PC running Temp Watcher.
+- **Port** — The port used by the Temp Watcher API.
+
+The PC and watch must be connected to the same local network.
+
+The Temp Watcher API displays the IP address and port it is running on when the Windows application starts.
 
 ## Planned Features
 
-- local LAN control of Govee lights.
+- Local LAN control of Govee lights
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
