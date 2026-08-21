@@ -33,3 +33,7 @@ The app connects to a small local API running on the PC and displays CPU and GPU
 ## Planned Features
 
 - local LAN control of Govee lights.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
