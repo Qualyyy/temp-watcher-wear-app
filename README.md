@@ -7,7 +7,7 @@ A Wear OS app for monitoring PC temperatures directly from a smartwatch.
 The app connects to a small local API running on the PC and displays CPU and GPU temperatures on the
 watch.
 
-![temp-watcher-screen.png](screenshots/temp-watcher-screen.png)
+<img src="screenshots/temp-watcher-screen.png" alt="Temp Watcher main screen" width="250">
 
 ## Features
 
