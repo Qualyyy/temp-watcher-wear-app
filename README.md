@@ -1,6 +1,6 @@
 # Temp Watcher
 
-*Personal project / actively developed.*
+*Personal project*
 
 A Wear OS app for monitoring PC temperatures directly from a smartwatch.
 
@@ -56,10 +56,6 @@ The PC and watch must be connected to the same local network.
 
 The Temp Watcher API displays the IP address and port it is running on when the Windows application
 starts.
-
-## Planned Features
-
-- Local LAN control of Govee lights
 
 ## License
 
